@@ -7,7 +7,7 @@ class Card:
              "diamonds",
              "clubs"]
 
-    values = [None, None, "2", "3",
+    values = [None, None,"2", "3",
               "4", "5", "6", "7",
               "8", "9", "10",
               "Jack", "Queen",
@@ -114,7 +114,7 @@ class Game:
                 self.wins(self.p2.name)
 
         win = self.winner(self.p1,
-                          self.p2)
+                         self.p2)
         print("War is over.{} wins"
               .format(win))
 
@@ -124,7 +124,6 @@ class Game:
         if p1.wins < p2.wins:
             return p2.name
         return "It was a tie!"
-
 
 game = Game()
 game.play_game()
