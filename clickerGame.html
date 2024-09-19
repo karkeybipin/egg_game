@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clicker Game</title>
+</head>
+<body>
+    <h1>Clicker Game</h1>
+    <button id="clickButton" onclick="increaseClicks()" disabled>Click Me!</button>
+    <p>Clicks: <span id="clickCount">0</span></p>
+    <button onclick="startGame()">Start Game</button>
+
+    <script>
+        let clickCount = 0;
+        let gameActive = false;
+
+        function increaseClicks() {
+            if (gameActive) {
+                clickCount++;
+                document.getElementById('clickCount').innerText = clickCount;
+            }
+        }
+
+        function startGame() {
+            clickCount = 0;
+            document.getElementById('clickCount').innerText = clickCount;
+            document.getElementById('clickButton').disabled = false;
+            gameActive = true;
+
+            setTimeout(() => {
+                document.getElementById('clickButton').disabled = true;
+                gameActive = false;
+                alert('Time is up! You clicked ' + clickCount + ' times.');
+            }, 10000); // 10 seconds
+        }
+    </script>
+</body>
+</html>

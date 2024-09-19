@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess the Number</title>
+</head>
+<body>
+    <h1>Guess the Number</h1>
+    <input type="number" id="guess" placeholder="Enter a number">
+    <button onclick="guessNumber()">Guess</button>
+    <p id="message"></p>
+
+    <script>
+        const numberToGuess = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function guessNumber() {
+            const userGuess = parseInt(document.getElementById('guess').value);
+            attempts++;
+
+            if (userGuess === numberToGuess) {
+                document.getElementById('message').innerText = `Congratulations! You guessed it in ${attempts} attempts.`;
+            } else if (userGuess > numberToGuess) {
+                document.getElementById('message').innerText = 'Too high! Try again.';
+            } else {
+                document.getElementById('message').innerText = 'Too low! Try again.';
+            }
+        }
+    </script>
+</body>
+</html>

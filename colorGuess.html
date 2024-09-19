@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Guessing Game</title>
+    <style>
+        #colorBox {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess the Color</h1>
+    <div id="colorBox"></div>
+    <p>What is the RGB value of the above color?</p>
+
+    <input type="text" id="guess" placeholder="e.g., rgb(255,0,0)">
+    <button onclick="guessColor()">Submit Guess</button>
+    <p id="message"></p>
+
+    <script>
+        const randomColor = () => Math.floor(Math.random() * 256);
+        const rgbColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+        document.getElementById('colorBox').style.backgroundColor = rgbColor;
+
+        function guessColor() {
+            const userGuess = document.getElementById('guess').value;
+            if (userGuess === rgbColor) {
+                document.getElementById('message').innerText = 'Correct! The color was ' + rgbColor;
+            } else {
+                document.getElementById('message').innerText = 'Wrong! Try again.';
+            }
+        }
+    </script>
+</body>
+</html>
