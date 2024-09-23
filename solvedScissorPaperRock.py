@@ -26,6 +26,4 @@ def play_rps():
             print("You win!")
         else:
             print("You lose!")
-
-# Start the game
 play_rps()
