@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #taskForm {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #taskForm input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+        }
+        #taskForm button {
+            padding: 10px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        li.completed {
+            text-decoration: line-through;
+            background-color: #d4edda;
+        }
+        button.remove {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        button.edit {
+            background-color: #f1c40f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        #filterButtons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #filterButtons button {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Extended To-Do List</h1>
+
+    <div id="taskForm">
+        <input type="text" id="taskInput" placeholder="Enter a new task..." />
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <div id="filterButtons">
+        <button onclick="filterTasks('all')">All</button>
+        <button onclick="filterTasks('completed')">Completed</button>
+        <button onclick="filterTasks('pending')">Pending</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        // Load tasks from localStorage on page load
+        document.addEventListener('DOMContentLoaded', loadTasks);
+
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.forEach(task => createTaskElement(task.text, task.completed));
+        }
+
+        // Function to save tasks to localStorage
+        function saveTasks() {
+            const tasks = [];
+            document.querySelectorAll('#taskList li').forEach(li => {
+                tasks.push({
+                    text: li.firstChild.nodeValue,
+                    completed: li.classList.contains('completed')
+                });
+            });
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        // Function to add a new task
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskValue = taskInput.value.trim();
+            
+            if (taskValue === '') {
+                alert('Please enter a task!');
+                return;
+            }
+
+            createTaskElement(taskValue, false);
+            taskInput.value = '';
+            saveTasks();
+        }
+
+        // Function to create and append task element
+        function createTaskElement(text, completed) {
+            const taskList = document.getElementById('taskList');
+
+            // Create new list item
+            const li = document.createElement('li');
+            li.textContent = text;
+
+            // Mark task as completed if necessary
+            if (completed) {
+                li.classList.add('completed');
+            }
+
+            // Toggle task completion
+            li.addEventListener('click', function () {
+                li.classList.toggle('completed');
+                saveTasks();
+            });
+
+            // Add Edit button
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.className = 'edit';
+            editButton.onclick = function () {
+                const newTask = prompt('Edit task:', li.firstChild.nodeValue);
+                if (newTask !== null && newTask.trim() !== '') {
+                    li.firstChild.nodeValue = newTask;
+                    saveTasks();
+                }
+            };
+
+            // Add Remove button
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.className = 'remove';
+            removeButton.onclick = function () {
+                taskList.removeChild(li);
+                saveTasks();
+            };
+
+            li.appendChild(editButton);
+            li.appendChild(removeButton);
+            taskList.appendChild(li);
+        }
+
+        // Function to filter tasks
+        function filterTasks(status) {
+            document.querySelectorAll('#taskList li').forEach(li => {
+                switch (status) {
+                    case 'all':
+                        li.style.display = 'flex';
+                        break;
+                    case 'completed':
+                        li.style.display = li.classList.contains('completed') ? 'flex' : 'none';
+                        break;
+                    case 'pending':
+                        li.style.display = !li.classList.contains('completed') ? 'flex' : 'none';
+                        break;
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
