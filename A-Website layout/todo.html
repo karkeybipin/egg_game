@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <!-- <style>
+      
+    </style> -->
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+
+    <div id="taskForm">
+      <input type="text" id="taskInput" placeholder="Enter a new task..." />
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <script>
+      function addTask() {
+        const taskInput = document.getElementById("taskInput");
+        const taskValue = taskInput.value.trim();
+
+        if (taskValue === "") {
+          alert("Please enter a task!");
+          return;
+        }
+
+        const taskList = document.getElementById("taskList");
+        const li = document.createElement("li");
+        li.textContent = taskValue;
+        li.addEventListener("click", function () {
+          li.classList.toggle("completed");
+        });
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.className = "remove";
+        removeButton.onclick = function () {
+          taskList.removeChild(li);
+        };
+        li.appendChild(removeButton);
+        taskList.appendChild(li);
+        taskInput.value = "";
+      }
+    </script>
+  </body>
+</html>
+
+<!--   body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #taskForm {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #taskForm input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+        }
+        #taskForm button {
+            padding: 10px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        li.completed {
+            text-decoration: line-through;
+            background-color: #d4edda;
+        }
+        button.remove {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        } -->
