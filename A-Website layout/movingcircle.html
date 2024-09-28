@@ -12,7 +12,8 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-color: #f4f4f4;
+        
+        background-color: #272626;
       }
 
       .circle {
@@ -25,13 +26,16 @@
     </style>
   </head>
   <body>
+
+    <!-- background-color: #f4f4f4; -->
+
     <div class="circle"></div>
 
     <script>
       const circle = document.querySelector(".circle");
       let angle = 0;
       const radius = 150;
-      const speed = 0.05;
+      const speed = 0.005;
 
       function moveCircle() {
         const x = window.innerWidth / 2 + radius * Math.cos(angle) - 25;
