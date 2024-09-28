@@ -64,14 +64,12 @@
     <script>
         const cmScale = document.getElementById('cmScale');
         const inchesScale = document.getElementById('inchesScale');
-
-        // Function to create CM scale (50 cm)
         function createCmScale() {
             for (let i = 0; i <= 50; i++) {
                 const mark = document.createElement('div');
                 mark.classList.add('cm-mark');
                 mark.style.left = `${(i / 50) * 100}%`;
-                mark.style.height = i % 5 === 0 ? '40px' : '20px'; // Long marks every 5 cm
+                mark.style.height = i % 5 === 0 ? '40px' : '20px'; 
                 if (i % 5 === 0) {
                     const label = document.createElement('span');
                     label.innerText = i + ' cm';
@@ -80,15 +78,13 @@
                 cmScale.appendChild(mark);
             }
         }
-
-        // Function to create Inches scale (20 inches ≈ 50.8 cm)
         function createInchesScale() {
             const totalInches = 20;
             for (let i = 0; i <= totalInches; i++) {
                 const mark = document.createElement('div');
                 mark.classList.add('inch-mark');
                 mark.style.left = `${(i / totalInches) * 100}%`;
-                mark.style.height = i % 1 === 0 ? '40px' : '20px'; // Long marks every 1 inch
+                mark.style.height = i % 1 === 0 ? '40px' : '20px'; 
                 if (i % 1 === 0) {
                     const label = document.createElement('span');
                     label.innerText = i + ' in';
@@ -97,8 +93,6 @@
                 inchesScale.appendChild(mark);
             }
         }
-
-        // Create both scales
         createCmScale();
         createInchesScale();
     </script>
