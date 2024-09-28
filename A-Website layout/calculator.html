@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+      .calculator {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      #display {
+        width: 100%;
+        height: 50px;
+        font-size: 24px;
+        text-align: right;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .button-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      button {
+        padding: 20px;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #e7e7e7;
+        transition: background-color 0.2s;
+      }
+      button:hover {
+        background-color: #dcdcdc;
+      }
+      button.clear {
+        background-color: #ff4c4c;
+        color: white;
+      }
+      button.equals {
+        background-color: #4caf50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" id="display" disabled />
+      <div class="button-grid">
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="setOperation('/')">/</button>
+
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="setOperation('*')">*</button>
+
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="setOperation('-')">-</button>
+
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="appendDot()">.</button>
+        <button onclick="calculate()" class="equals">=</button>
+        <button onclick="setOperation('+')">+</button>
+
+        <button
+          onclick="clearDisplay()"
+          class="clear"
+          style="grid-column: span 4"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let displayValue = "";
+      let currentOperation = null;
+      let previousValue = null;
+      let resetDisplay = false;
+      function appendNumber(number) {
+        if (resetDisplay) {
+          displayValue = "";
+          resetDisplay = false;
+        }
+        displayValue += number;
+        updateDisplay();
+      }
+
+      function appendDot() {
+        if (!displayValue.includes(".")) {
+          displayValue += ".";
+          updateDisplay();
+        }
+      }
+      function setOperation(operation) {
+        if (currentOperation !== null) {
+          calculate();
+        }
+        previousValue = displayValue;
+        currentOperation = operation;
+        resetDisplay = true;
+      }
+
+      function clearDisplay() {
+        displayValue = "";
+        currentOperation = null;
+        previousValue = null;
+        resetDisplay = false;
+        updateDisplay();
+      }
+
+      function calculate() {
+        if (currentOperation === null || resetDisplay) return;
+
+        const currentValue = parseFloat(displayValue);
+        const previousNum = parseFloat(previousValue);
+
+        if (isNaN(previousNum) || isNaN(currentValue)) return;
+
+        let result;
+        switch (currentOperation) {
+          case "+":
+            result = previousNum + currentValue;
+            break;
+          case "-":
+            result = previousNum - currentValue;
+            break;
+          case "*":
+            result = previousNum * currentValue;
+            break;
+          case "/":
+            result = previousNum / currentValue;
+            break;
+          default:
+            return;
+        }
+
+        displayValue = result.toString();
+        currentOperation = null;
+        resetDisplay = true;
+        updateDisplay();
+      }
+
+      function updateDisplay() {
+        document.getElementById("display").value = displayValue;
+      }
+    </script>
+  </body>
+</html>
