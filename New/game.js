@@ -78,13 +78,13 @@ function drawPlayer() {
 }
 
 
-let canvas, ctx;
-let player = { x: 375, y: 500, width: 50, height: 50, speed: 5 };
-let bullets = [];
-let enemies = [];
-let keys = {};
-let score = 0;
-let gameLoop;
+// let canvas, ctx;
+// let player = { x: 375, y: 500, width: 50, height: 50, speed: 5 };
+// let bullets = [];
+// let enemies = [];
+// let keys = {};
+// let score = 0;
+// let gameLoop;
 
 function initGame() {
     canvas = document.getElementById('gameCanvas');
