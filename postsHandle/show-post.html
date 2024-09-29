@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Posts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>All Posts</h1>
+        <div id="postsContainer"></div>
+        <button onclick="window.location.href='add-post.html'">Add New Post</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const postsContainer = document.getElementById('postsContainer');
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+            if (posts.length === 0) {
+                postsContainer.innerHTML = '<p>No posts found.</p>';
+            } else {
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.classList.add('post');
+
+                    const title = document.createElement('h2');
+                    title.textContent = post.title;
+
+                    const description = document.createElement('p');
+                    description.textContent = post.description;
+
+                    postElement.appendChild(title);
+                    postElement.appendChild(description);
+
+                    if (post.image) {
+                        const img = document.createElement('img');
+                        img.src = post.image;
+                        img.alt = 'Post Image';
+                        img.style.maxWidth = '200px';
+                        postElement.appendChild(img);
+                    }
+
+                    postsContainer.appendChild(postElement);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

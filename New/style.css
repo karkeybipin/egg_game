@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+}
+
+.menu button {
+    display: block;
+    margin: 15px auto;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #61dafb;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu button:hover {
+    background-color: #21a1f1;
+}
+
+.hidden {
+    display: none;
+}
+
+canvas {
+    background-color: black;
+    display: block;
+    margin: 0 auto;
+}

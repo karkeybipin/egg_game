@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooting Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcome-page">
+        <h1>Welcome to the Shooting Game</h1>
+        <div class="menu">
+            <button onclick="startNewGame()">New Game</button>
+            <button onclick="continueGame()">Continue Previous Game</button>
+            <button onclick="openSettings()">Settings</button>
+            <button onclick="openMore()">More</button>
+        </div>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="settings-page" class="hidden">
+        <h1>Settings</h1>
+        <button onclick="goBack()">Back</button>
+        <p>Adjust settings here...</p>
+    </div>
+
+    <!-- Game Page -->
+    <div id="game-page" class="hidden">
+        <h1>Shooting Game</h1>
+        <canvas id="gameCanvas"></canvas>
+        <button onclick="goBack()">Pause</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

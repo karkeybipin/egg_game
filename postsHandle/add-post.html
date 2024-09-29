@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Post</h1>
+        <form id="postForm">
+            <label for="title">Post Title</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Post Description</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="image">Upload Image</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <button type="submit">Add Post</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const imageFile = document.getElementById('image').files[0];
+            let imageURL = '';
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    imageURL = reader.result;
+
+                    const post = {
+                        title: title,
+                        description: description,
+                        image: imageURL
+                    };
+
+                    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+                    posts.push(post);
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    window.location.href = 'show-post.html';
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                const post = {
+                    title: title,
+                    description: description,
+                    image: ''
+                };
+
+                const posts = JSON.parse(localStorage.getItem('posts')) || [];
+                posts.push(post);
+                localStorage.setItem('posts', JSON.stringify(posts));
+
+                window.location.href = 'show-post.html';
+            }
+        });
+    </script>
+</body>
+</html>
