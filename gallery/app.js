@@ -24,8 +24,6 @@ fileInput.addEventListener('change', (event) => {
 });
 
 
-// const fileInput = document.getElementById('file-input');
-// const gallery = document.getElementById('gallery');
 
 fileInput.addEventListener('change', (event) => {
     const files = event.target.files;
