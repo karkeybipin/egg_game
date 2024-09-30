@@ -3,19 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>...</title>
+    <title>Moving Pattern of Shapes</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pattern {
+            width: 500px;
+            height: 500px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 10 L90 90 L10 90 Z" fill="%23FFD700" /%3E%3C/svg%3E');
+            background-size: 50px 50px;
+            animation: movePattern 10s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100px 100px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <pattern id="trianglePattern" patternUnits="userSpaceOnUse" width="50" height="50">
-            <path d="M25 0 L50 50 L0 50 Z" fill="gold" />
-        </pattern>
-    </defs>
-
-    <rect width="500" height="500" fill="url(#trianglePattern)" />
-</svg>
+    <div class="pattern"></div>
 
 </body>
 </html>
