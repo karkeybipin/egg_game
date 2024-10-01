@@ -19,7 +19,7 @@ def check_baby():
 
 def monitor_baby():
     check_baby()
-    root.after(5000, monitor_baby)  
+    root.after(5000, monitor_baby)
 root = tk.Tk()
 root.title("Baby Monitor")
 root.geometry("400x400")
