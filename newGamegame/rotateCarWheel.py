@@ -1,0 +1,46 @@
+import pygame
+import math
+
+pygame.init()
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Rotating Car and Wheels")
+WHITE = (255, 255, 255)
+clock = pygame.time.Clock()
+car_image = pygame.image.load('car.png')
+car_image = pygame.transform.scale(car_image, (200, 100))
+wheel_image = pygame.image.load('wheel.png')
+wheel_image = pygame.transform.scale(wheel_image, (50, 50))
+
+
+def rotate_image(image, angle):
+    return pygame.transform.rotate(image, angle)
+
+
+car_x = 300
+car_y = 250
+front_wheel_offset = (130, 70)
+back_wheel_offset = (30, 70)
+angle = 0
+running = True
+while running:
+    screen.fill(WHITE)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    angle -= 5
+    screen.blit(car_image, (car_x, car_y))
+    front_wheel_pos = (
+        car_x + front_wheel_offset[0], car_y + front_wheel_offset[1])
+    back_wheel_pos = (
+        car_x + back_wheel_offset[0], car_y + back_wheel_offset[1])
+    rotated_wheel_front = rotate_image(wheel_image, angle)
+    rotated_wheel_back = rotate_image(wheel_image, angle)
+    front_wheel_rect = rotated_wheel_front.get_rect(center=front_wheel_pos)
+    back_wheel_rect = rotated_wheel_back.get_rect(center=back_wheel_pos)
+    screen.blit(rotated_wheel_front, front_wheel_rect)
+    screen.blit(rotated_wheel_back, back_wheel_rect)
+    pygame.display.flip()
+    clock.tick(60)
+pygame.quit()
