@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rotating Car and Wheels</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      canvas {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="carCanvas" width="800" height="600"></canvas>
+
+    <script>
+      const canvas = document.getElementById("carCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const carImage = new Image();
+      carImage.src = "car.png";
+      const wheelImage = new Image();
+      wheelImage.src = "wheel.png"; 
+
+      let angle = 0;
+      const carX = 300;
+      const carY = 250;
+      const frontWheelOffset = { x: 130, y: 70 }; 
+      const backWheelOffset = { x: 30, y: 70 }; 
+
+      function drawRotatedImage(image, x, y, angle, width, height) {
+        ctx.save();
+        ctx.translate(x + width / 2, y + height / 2); 
+        ctx.rotate((angle * Math.PI) / 180); 
+        ctx.drawImage(image, -width / 2, -height / 2, width, height); 
+        ctx.restore();
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(carImage, carX, carY, 200, 100);
+        const frontWheelX = carX + frontWheelOffset.x;
+        const frontWheelY = carY + frontWheelOffset.y;
+        const backWheelX = carX + backWheelOffset.x;
+        const backWheelY = carY + backWheelOffset.y;
+        drawRotatedImage(wheelImage, frontWheelX, frontWheelY, angle, 50, 50);
+        drawRotatedImage(wheelImage, backWheelX, backWheelY, angle, 50, 50);
+        angle -= 5;
+        requestAnimationFrame(draw);
+      }
+      carImage.onload = () => {
+        wheelImage.onload = () => {
+          draw();
+        };
+      };
+    </script>
+  </body>
+</html>
