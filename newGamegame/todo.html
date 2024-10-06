@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #todoApp {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            background-color: #e0e0e0;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="todoApp">
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="New task">
+    <button id="addTask">Add</button>
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+    const taskInput = document.getElementById('taskInput');
+    const addTaskButton = document.getElementById('addTask');
+    const taskList = document.getElementById('taskList');
+
+    addTaskButton.addEventListener('click', () => {
+        const task = taskInput.value.trim();
+        if (task) {
+            const li = document.createElement('li');
+            li.textContent = task;
+            taskList.appendChild(li);
+            taskInput.value = '';
+            li.addEventListener('click', () => li.remove());
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #converter {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="converter">
+    <h1>Temperature Converter</h1>
+    <input type="number" id="celsiusInput" placeholder="Celsius">
+    <button id="convertButton">Convert to Fahrenheit</button>
+    <p id="result"></p>
+</div>
+
+<script>
+    const celsiusInput = document.getElementById('celsiusInput');
+    const convertButton = document.getElementById('convertButton');
+    const result = document.getElementById('result');
+
+    convertButton.addEventListener('click', () => {
+        const celsius = parseFloat(celsiusInput.value);
+        if (!isNaN(celsius)) {
+            const fahrenheit = (celsius * 9/5) + 32;
+            result.textContent = `${celsius}°C = ${fahrenheit.toFixed(2)}°F`;
+        } else {
+            result.textContent = 'Please enter a valid number.';
+        }
+    });
+</script>
+
+</body>
+</html>
