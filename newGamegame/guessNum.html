@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #game {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game">
+    <h1>Guess the Number</h1>
+    <input type="number" id="guessInput" placeholder="Enter your guess" />
+    <button id="submitGuess">Submit</button>
+    <p id="result"></p>
+</div>
+
+<script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    const resultDisplay = document.getElementById('result');
+    const guessInput = document.getElementById('guessInput');
+    const submitGuess = document.getElementById('submitGuess');
+
+    submitGuess.addEventListener('click', () => {
+        const userGuess = parseInt(guessInput.value);
+        if (userGuess < randomNumber) {
+            resultDisplay.textContent = 'Too low!';
+        } else if (userGuess > randomNumber) {
+            resultDisplay.textContent = 'Too high!';
+        } else {
+            resultDisplay.textContent = 'Congratulations! You guessed it!';
+        }
+    });
+</script>
+
+</body>
+</html>
