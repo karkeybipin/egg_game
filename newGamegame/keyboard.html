@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Keyboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      .input-container {
+        margin-bottom: 20px;
+      }
+      input {
+        width: 300px;
+        height: 40px;
+        font-size: 18px;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .keyboard {
+        display: grid;
+        grid-template-columns: repeat(10, 50px);
+        gap: 10px;
+      }
+      .key {
+        width: 50px;
+        height: 50px;
+        background-color: #333;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 5px;
+        user-select: none;
+      }
+      .key:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input-container">
+      <input type="text" id="textInput" placeholder="Type here..." readonly />
+    </div>
+
+    <div class="keyboard">
+      <div class="key">A</div>
+      <div class="key">B</div>
+      <div class="key">C</div>
+      <div class="key">D</div>
+      <div class="key">E</div>
+      <div class="key">F</div>
+      <div class="key">G</div>
+      <div class="key">H</div>
+      <div class="key">I</div>
+      <div class="key">J</div>
+      <div class="key">K</div>
+      <div class="key">L</div>
+      <div class="key">M</div>
+      <div class="key">N</div>
+      <div class="key">O</div>
+      <div class="key">P</div>
+      <div class="key">Q</div>
+      <div class="key">R</div>
+      <div class="key">S</div>
+      <div class="key">T</div>
+      <div class="key">U</div>
+      <div class="key">V</div>
+      <div class="key">W</div>
+      <div class="key">X</div>
+      <div class="key">Y</div>
+      <div class="key">Z</div>
+    </div>
+
+    <script>
+      const textInput = document.getElementById("textInput");
+      const keys = document.querySelectorAll(".key");
+
+      keys.forEach((key) => {
+        key.addEventListener("click", () => {
+          textInput.value += key.textContent;
+        });
+      });
+    </script>
+  </body>
+</html>
