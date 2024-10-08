@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Look with Buttons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .iphone {
+            width: 300px;
+            height: 600px;
+            border-radius: 50px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding-top: 30px;
+        }
+        .notch {
+            width: 150px;
+            height: 30px;
+            background-color: black;
+            border-radius: 0 0 20px 20px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .screen {
+            width: 85%;
+            height: 500px;
+            background-color: lightgray;
+            border-radius: 30px;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .button {
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .iphone-bottom {
+            width: 70px;
+            height: 70px;
+            background-color: #333;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="iphone">
+    <div class="notch"></div>
+    <div class="screen">
+        <div class="button" id="flashlightButton"><i class="fas fa-lightbulb"></i></div>
+        <div class="button"><i class="fas fa-music"></i></div>
+        <div class="button"><i class="fas fa-wifi"></i></div>
+    </div>
+    <div class="iphone-bottom"></div>
+</div>
+
+<script>
+    const flashlightButton = document.getElementById('flashlightButton');
+
+    flashlightButton.addEventListener('click', () => {
+        alert('Flashlight turned on!');
+    });
+</script>
+
+</body>
+</html>
