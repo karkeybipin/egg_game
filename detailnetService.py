@@ -1,12 +1,10 @@
 import psutil
 
 def get_network_stats():
-    # Network I/O stats
     net_io = psutil.net_io_counters()
     print(f"Bytes Sent: {net_io.bytes_sent / (1024**2):.2f} MB")
+        #   (1024**2):.2f} MB")
     print(f"Bytes Received: {net_io.bytes_recv / (1024**2):.2f} MB")
-    
-    # Network connections
     connections = psutil.net_connections(kind='inet')
     print("\nActive Network Connections:")
     for conn in connections:
