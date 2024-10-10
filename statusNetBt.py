@@ -11,6 +11,12 @@ def check_internet_connectivity(host="8.8.8.8", port=53, timeout=3):
         return True
     except socket.error as ex:
         return False
+    # try:
+    #     socket.setdefaulttimeout(timeout)
+    #     socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
+    #     return True
+    # except socket.error as ex:
+    #     return False
 
 def check_bluetooth_status():
     """
@@ -30,6 +36,13 @@ def check_bluetooth_status():
             print("Bluetooth service is not active.")
     except Exception as e:
         print(f"Error checking Bluetooth status: {e}")
+    #     if bt_service_status == "active":
+    #         print("Bluetooth service is active.")
+    #         print("Paired devices:\n", paired_devices if paired_devices else "No paired devices found.")
+    #     else:
+    #         print("Bluetooth service is not active.")
+    # except Exception as e:
+    #     print(f"Error checking Bluetooth status: {e}")
 
 if __name__ == "__main__":
     if check_internet_connectivity():
