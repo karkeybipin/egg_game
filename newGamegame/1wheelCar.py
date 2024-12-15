@@ -41,3 +41,17 @@ while running:
     pygame.display.flip()
     clock.tick(60)
 pygame.quit()
+
+pygame.init()
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Rotating Car and Wheels")
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
+clock = pygame.time.Clock()
+car_image = pygame.image.load('car.png')  
+wheel_image = pygame.image.load('wheel.png')  
+wheel_image = pygame.transform.scale(wheel_image, (50, 50))
+
