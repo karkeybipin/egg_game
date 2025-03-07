@@ -51,6 +51,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 clock = pygame.time.Clock()
+# image
 car_image = pygame.image.load('car.png')  
 wheel_image = pygame.image.load('wheel.png')  
 wheel_image = pygame.transform.scale(wheel_image, (50, 50))
