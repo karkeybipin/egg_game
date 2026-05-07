@@ -18,6 +18,9 @@ wheel_image = pygame.transform.scale(wheel_image, (50, 50))
 def rotate_image(image, angle):
     return pygame.transform.rotate(image, angle)
 
+# def rotate_image(image, angle):
+#     return pygame.transform.rotate(image, angle)
+
 
 car_x = 200
 car_y = 300
